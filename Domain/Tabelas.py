@@ -1,8 +1,8 @@
 """
-Criar tabelas
+Criar/Referenciar tabelas
 """
-from sqlalchemy.orm import declarative_base, sessionmaker
-from sqlalchemy import String, Integer, Float, DATE, Column, ForeignKey, PrimaryKeyConstraint
+from sqlalchemy.orm import declarative_base
+from sqlalchemy import String, Integer, Float, DATE, Column, ForeignKey
 
 Base = declarative_base()
 

@@ -16,6 +16,8 @@ DRIVER_NAME=os.getenv('DRIVER_NAME')
 
 # Conexao Por host
 engine = create_engine("mssql+pyodbc://{}/{}?driver={}".format(USER_NAME, BD_NAME, DRIVER_NAME), echo=True)
-conexao = engine.connect() #Iniciando conexao
-conexao.close()
+#Exportar o engine talvez
+
+#conexao = engine.connect() - Deixa o proprio sqlAlchemy cuidar da conexão
+#conexao.close()
 
