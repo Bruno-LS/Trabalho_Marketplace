@@ -1,8 +1,7 @@
 """
 1.Criar a conexao com o banco
 2.Iniciar sessão
-3.Definir como as demais funções vão interagir com o Banco
-4.Exportar conexao
+3.Exportar conexao
 """
 from dotenv import load_dotenv
 import os
@@ -18,6 +17,6 @@ DRIVER_NAME=os.getenv('DRIVER_NAME')
 engine = create_engine("mssql+pyodbc://{}/{}?driver={}".format(USER_NAME, BD_NAME, DRIVER_NAME), echo=True)
 #Exportar o engine talvez
 
-#conexao = engine.connect() - Deixa o proprio sqlAlchemy cuidar da conexão
+#conexao = engine.connect() - Deixa o proprio sqlAlchemy cuidar da conexão usando o engine
 #conexao.close()
 

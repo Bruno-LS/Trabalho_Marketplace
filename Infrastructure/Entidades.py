@@ -45,4 +45,34 @@ class Cliente(Base):
                 f"Email={self.Email}, Telefone={self.Telefone})")
 
 
+class Itens_Pedido(Base):
+    __tablename__ = "Itens_Pedidos"
+    ID_Produto = Column(Integer, ForeignKey("Produto.ID_Produto"), nullable=False)
+    ID_Pedido = Column(Integer, ForeignKey("Pedido.ID_Pedido"), nullable=False)
+    Quant = Column(Integer, nullable=False)
+
+    def __repr__(self):
+        return (f"Itens_Pedido(ID_Pedido={self.ID_Pedido}, ID_Produto={self.ID_Produto}, Quantidade={self.Quant})")
+
+
+class Movimentacao(Base):
+    __tablename__ = "Movimentaçao_Estoque"
+    ID_Produto = Column(Integer, ForeignKey("Produto.ID_Produto"), nullable=False)
+    ID_Pedido = Column(Integer, ForeignKey("Pedido.ID_Pedido"), nullable=False)
+    STATUS_Pedido = Column(String(1), nullable=False, default='N')
+    Estoque = Column(Integer, nullable=False)
+
+    def __repr__(self):
+        return (f"Movimentação do Estoque(ID_Pedido={self.ID_Pedido}, ID_Produto={self.ID_Produto}, Estoque={self.Estoque}, Status do Pedido={self.STATUS_Pedido})")
+
+
+
+class Compras(Base):
+    __tablename__ ="Compras"
+    ID_Produto = Column(Integer, ForeignKey("Produto.ID_Produto"), nullable=False)
+    Nome_produto = Column(String(30), nullable=False)
+    Quant = Column(Integer, nullable=False)
+
+    def __repr__(self):
+        return (f"Produtos à Comprar(ID_Produto={self.ID_Produto}, Nome do Produto={self.Nome_produto}, Quantidade={self.Quant})")
 

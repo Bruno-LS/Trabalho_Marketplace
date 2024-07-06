@@ -1,6 +1,22 @@
-"""
-1.Criar uma clase CRUD, com os metodos como endpoints
-2.Serão feitas as funções de CRUD e ativação do tratamento de Carga
-3.Suas funções são chamadas nas routes
-"""
-#from Domain.Tratar_Cargas import
+
+#from Infrastructure.Conexao_Banco import engine
+
+
+def Listar_tabela(nome_tabela):
+
+    return tabela
+
+
+def buscarP_id(nome_tabela, id):
+    return linha
+
+
+def buscarP_nome(nome_tabela, nome):
+    return linha
+
+
+def remover(nome_tabela, senha, id):
+
+    return status_r
+
+#def (nome_tabela):
