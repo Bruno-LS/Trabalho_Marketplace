@@ -4,9 +4,9 @@
 """
 import requests
 import pandas as pd
-from Domain.Tratar_Cargas import Tratar_carga
+from Domain.Funcoes_util import tratar_carga
 
-
+#ajeitar
 def iniciar_Transacao(lista_requisicao):
 
     lista_Carga = []
@@ -25,7 +25,7 @@ def iniciar_Transacao(lista_requisicao):
                            )
 
 
-    df_carga = pd.DataFrame(lista_Pedidos, columns=[
+    df_carga = pd.DataFrame(lista_Carga, columns=[
         "ID_Order",
         "ID_Product",
         "Order_Date",
@@ -50,4 +50,4 @@ def iniciar_Transacao(lista_requisicao):
         "Tax_ID"
     ])
 
-    Tratar_carga(df_carga)
+    tratar_carga(df_carga)
