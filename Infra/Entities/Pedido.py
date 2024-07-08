@@ -1,5 +1,7 @@
 from sqlalchemy import String, Integer, Float, DATE, Column, ForeignKey
 from Infra.Configs.Base import Base
+import pandas as pd
+
 
 class Pedido(Base):
     __tablename__ = "Pedido"
@@ -17,6 +19,22 @@ class Pedido(Base):
     UF = Column(String(50), nullable=False)
     PAIS = Column(String(30), nullable=False)
     ID_Cliente = Column(Integer, ForeignKey("Cliente.ID_cliente"), nullable=False)
+
+    def __init__(self, data_frame: pd.DataFrame, ID_Cliente):
+        self.ID_Pedido = data_frame.iloc[0]['ID_Order']
+        self.Data_Pedido = data_frame.iloc[0]['Order_Date']
+        self.Pagamento_data = data_frame.iloc[0]['Payment_Date']
+        self.Valor_Total = data_frame.iloc[0]['Amount']#colocar funcao
+        self.Tipo_Entrega = data_frame.iloc[0]['Delivery_Type']
+        self.Moeda = data_frame.iloc[0]['Currency']
+        self.Endereco1 = data_frame.iloc[0]['Address1']
+        self.Endereco2 = data_frame.iloc[0]['Address2']
+        self.Endereco3 = data_frame.iloc[0]['Address3']
+        self.CEP = data_frame.iloc[0]['Postal_Code']
+        self.Cidade = data_frame.iloc[0]['City']
+        self.UF = data_frame.iloc[0]['State']
+        self.PAIS = data_frame.iloc[0]['Country']
+        self.ID_Cliente = ID_Cliente#colocar funcao
 
     def __repr__(self):
         return (f"Pedido(ID_Pedido={self.ID_Pedido}, Data_Pedido={self.Data_Pedido}, "

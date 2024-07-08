@@ -1,29 +1,28 @@
 from Infra.Configs.connection_DB import DBconnection
-from Infra.Entities.Pedido import Pedido
+from Infra.Entities.Compras import Compras
 
 
 
-class PedidosRepository:
+class ComprasRepository:
 
     # Recebe dataframe e fazer o insert conforme a lógica de negócios
     @staticmethod
     def incluir(data_frame):
         with DBconnection() as db:
-            id_cliente = 10
-            data_insert = Pedido(data_frame, id_cliente)
+            data_insert = Compras(data_frame)
             db.session.add(data_insert)
             db.session.commit()
-
 
     @staticmethod
     def select():
         with DBconnection() as db:
-            data = db.session.query(Pedido).all()
+            data = db.session.query(Compras).all()
             return data
 
+
     @staticmethod
-    def select_id(id: int):
+    def select_id(self, id):
         with DBconnection() as db:
-            data = db.session.query(Pedido).filter(Pedido.ID_Pedido == id)
+            data = db.session.query(Compras).filter(Compras.ID_Produto == id)
             return data
 
