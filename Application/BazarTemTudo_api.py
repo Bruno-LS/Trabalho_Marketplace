@@ -20,15 +20,14 @@ def inicar():
 
 @app.route('/tabela/<string:nome_tabela>', methods=['GET'])
 def Buscar_Tabela(nome_tabela):
-    print(nome_tabela)
-    Tabela = en.listar_tabela(nome_tabela)
-    return jsonify(Tabela)
+    tabela = en.listar_tabela(nome_tabela)
+    return tabela
 
 
 @app.route('/tabela/<string:nome_tabela>/<int:id>', methods=['GET'])
 def Buscar_ID(nome_tabela, id):
-    Linha = en.buscar_id(nome_tabela, id)
-    return jsonify(Linha)
+    linha = en.buscar_id(nome_tabela, id)
+    return linha
 
 
 

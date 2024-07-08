@@ -1,8 +1,12 @@
 from sqlalchemy import String, Integer, Column
 from Infra.Configs.Base import Base
 import pandas as pd
+import json
+from dataclasses import dataclass, asdict
 
 
+
+@dataclass
 class Cliente(Base):
     __tablename__ = "Cliente"
     ID_cliente = Column(Integer, primary_key=True, nullable=False, autoincrement="auto")
@@ -18,8 +22,8 @@ class Cliente(Base):
         self.Email = data_frame.iloc[0]['Email']
         self.Telefone = data_frame.iloc[0]['Phone']
 
+
     def __repr__(self):
         return (f"Cliente(ID_cliente={self.ID_cliente}, Nome={self.Nome}, CPF={self.CPF}, "
                 f"Email={self.Email}, Telefone={self.Telefone})")
-
 

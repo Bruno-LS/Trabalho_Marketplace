@@ -1,7 +1,11 @@
+import json
+
 from Infra.repository.Pedidos_repository import PedidosRepository as ped_repo
 from Infra.repository.Clientes_repository import ClientesRepository as cli_repo
 from Infra.repository.Itens_Pedidos_repository import ItensPedidoRepository as it_Pe_repo
 from Infra.repository.Movimentacao_repository import MovimentacaoRepository as movim_repo
+from Infra.repository.Produtosrepository import ProdutosRepository as pr_repo
+from Infra.repository.tabelasRepository import TabelasRepository as tbr
 import pandas as pd
 
 
@@ -13,10 +17,13 @@ def listar_tabela(nome_tabela): #Usar nome da tabela pra selecionar qual reposit
         req = cli_repo.select()
     elif nome_tabela == "Itens_Pedido":
         req = it_Pe_repo.select()
+    elif nome_tabela == "Produto":
+        req = pr_repo.select()
     else:
         req = movim_repo.select()
 
-    linhas = req.__repr__()
+    data = req.__str__()
+    linhas = [json.dumps(data, indent=4)]
     return linhas
 
 #ajeitar
@@ -24,10 +31,13 @@ def buscar_id(nome_tabela, id: int): #Usar nome da tabela pra selecionar qual re
 
     if nome_tabela == "Pedido":
         req = ped_repo.select_id(id)
-    else: # nome_tabela == "Cliente":
+    elif nome_tabela == "Cliente":
         req = cli_repo.select_id(id)
+    else:
+        req = pr_repo.select_id(id)
 
-    linha = req.__repr__()
+    linha = req.__str__()
+    linha = json.dumps(linha, indent=4)
     return linha
 
 
@@ -35,13 +45,10 @@ def buscar_id(nome_tabela, id: int): #Usar nome da tabela pra selecionar qual re
 
 #ajeitar
 def tratar_carga(df_carga: pd.DataFrame):
-    """
-    - incluir vindo de repository mais logica das procedures - """
-    cli_repo.incluir(df_carga) # - Incluir_Cliente
-    ped_repo.incluir(df_carga) # - Incluir_Pedido
 
-    it_Pe_repo.incluir(df_carga) # - Incluir_Itens_Pedido
-    movim_repo.incluir(df_carga) # - Incluir_Movimetacao
+    inclusao = tbr()
+    inclusao.incluir(df_carga)
+
 
 
 

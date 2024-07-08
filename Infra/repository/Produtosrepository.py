@@ -1,20 +1,19 @@
 from Infra.Configs.connection_DB import DBconnection
-from Infra.Entities.Compras import Compras
+from Infra.Entities.Produto import Produto
 
 
 
-class ComprasRepository:
+class ProdutosRepository:
 
     @staticmethod
     def select():
         with DBconnection() as db:
-            data = db.session.query(Compras).all()
+            data = db.session.query(Produto).all()
             return data
 
-
     @staticmethod
-    def select_id(self, id):
+    def select_id(id: int):
         with DBconnection() as db:
-            data = db.session.query(Compras).filter(Compras.ID_Produto == id)
+            data = db.session.query(Produto).filter(Produto.ID_Produto == id)
             return data
 
