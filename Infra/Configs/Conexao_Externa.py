@@ -11,7 +11,7 @@ def iniciar_Transacao():
 
     lista_Carga = []
 
-    requisicao = "valor"
+    requisicao = "http://127.0.0.1:5000"
     url = '/{}'.format(requisicao)
     req = requests.get(url, timeout=3)
     pedido = req.json()
@@ -49,5 +49,4 @@ def iniciar_Transacao():
         "Phone",
         "Tax_ID"
     ])
-
     tratar_carga(df_carga)
